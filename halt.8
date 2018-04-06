@@ -1,0 +1,47 @@
+.TH "HALT" "8" "April 2018" "Artix Linux" "System Manager's Manual"
+.
+.SH "NAME"
+\fBhalt\fR \- stop the system
+.
+.SH "SYNOPSIS"
+\fBhalt\fR [\-nfdw]
+.
+.br
+\fBpoweroff\fR [\-nfdw]
+.
+.br
+\fBreboot\fR [\-nfdw]
+.
+.SH "DESCRIPTION"
+\fBhalt\fR/\fBreboot\fR/\fBpoweroff\fR/\fBshutdown\fR is a (mostly) sysvinit\-compatible binary\. It tells init(8)/openrc\-shutdown(8) to bring down, reboot, or power off the system\. Without \fB\-f\fR, it is a shortcut to \fBinit 0\fR/\fBinit 6\fR (runit) or \fBopenrc\-shutdown\fR (openrc)\.
+.
+.TP
+\fB\-n\fR
+Don\'t sync before reboot or halt\. Note that the kernel and storage drivers may still sync\.
+.
+.TP
+\fB\-f\fR
+Force halt or reboot, don\'t call init(8)\. This is \fBdangerous\fR!
+.
+.TP
+\fB\-d\fR
+Do not write to the wtmp record\.
+.
+.TP
+\fB\-w\fR
+Do not stop the system but write to the wtmp record\.
+.
+.SH "NOTES"
+This program tries to be as sysvinit\-compatible as possible, but due to limitations by the init system, some functions may not be available yet\.
+.
+.P
+The \fBshutdown\fR program behaves like the \fBpoweroff\fR program\.
+.
+.P
+Options \fB\-h\fR and \fB\-i\fR are fully ignored\.
+.
+.P
+When you are using runit(8), the options \fB\-n\fR, \fB\-d\fR, and \fB\-w\fR are ignored\.
+.
+.SH "SEE ALSO"
+init(8)
