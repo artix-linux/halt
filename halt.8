@@ -7,10 +7,13 @@
 \fBhalt\fR [\-nfdw]
 .
 .br
+\fBreboot\fR [\-nfdw]
+.
+.br
 \fBpoweroff\fR [\-nfdw]
 .
 .br
-\fBreboot\fR [\-nfdw]
+\fBshutdown\fR [\-nfdw]
 .
 .SH "DESCRIPTION"
 \fBhalt\fR/\fBreboot\fR/\fBpoweroff\fR/\fBshutdown\fR is a (mostly) sysvinit\-compatible binary\. It tells init(8)/openrc\-shutdown(8) to bring down, reboot, or power off the system\. Without \fB\-f\fR, it is a shortcut to \fBinit 0\fR/\fBinit 6\fR (runit) or \fBopenrc\-shutdown\fR (openrc)\.
@@ -35,13 +38,13 @@ Do not stop the system but write to the wtmp record\.
 This program tries to be as sysvinit\-compatible as possible, but due to limitations by the init system, some functions may not be available yet\.
 .
 .P
-The \fBshutdown\fR program behaves like the \fBpoweroff\fR program\.
+Currently, the \fBshutdown\fR program behaves like the \fBpoweroff\fR program\.
 .
 .P
 Options \fB\-h\fR and \fB\-i\fR are fully ignored\.
 .
 .P
-When you are using runit(8), the options \fB\-n\fR, \fB\-d\fR, and \fB\-w\fR are ignored\.
+When you are using runit(8), the options \fB\-d\fR and \fB\-w\fR are ignored\.
 .
 .SH "SEE ALSO"
-init(8)
+openrc\-init(8), runit(8)
