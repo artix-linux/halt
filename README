@@ -1,1 +1,3 @@
-This is a wrapper program for OpenRC and runit's shutdown scheme.
+halt(8) is a wrapper program for OpenRC and runit's shutdown scheme.
+Because halt(8) interacts directly with init(8), the initswitch program
+is also included for easy init switching system.
