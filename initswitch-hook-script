@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ -x "/usr/bin/openrc-init" ] && [ -x "/usr/bin/runit-init" ] && [ -r "/etc/runit/1" ]; then
+	echo "	We detected two init systems are installed in your system."
+	echo "	Use 'initswitch' to choose your init."
+elif [ -x "/usr/bin/openrc-init" ]; then
+	ln -sf "openrc-init" "/usr/bin/init"
+	echo "	Activated OpenRC as your init system."
+elif [ -x "/usr/bin/runit-init" ] && [ -r "/etc/runit/1" ]; then
+	ln -sf "runit-init" "/usr/bin/init"
+	echo "	Activated runit as your init system."
+else
+	echo "	You have no init systems installed."
+	echo "	Install either openrc or runit-artix."
+fi
