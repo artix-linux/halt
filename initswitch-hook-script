@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ -x "/usr/bin/openrc-init" ] && [ -x "/usr/bin/runit-init" ] && [ -r "/etc/runit/1" ]; then
 	echo "	We detected two init systems are installed in your system."
-	echo "	Use 'initswitch' to choose your init."
+	echo "	This should not be possible."
 elif [ -x "/usr/bin/openrc-init" ]; then
 	ln -sf "openrc-init" "/usr/bin/init"
 	echo "	Activated OpenRC as your init system."
