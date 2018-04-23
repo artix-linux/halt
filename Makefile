@@ -14,6 +14,7 @@ install:
 	install -m755 initswitch $(DESTDIR)$(PREFIX)/bin/initswitch
 	install -m644 initswitch-hook $(DESTDIR)$(PREFIX)/share/libalpm/hooks/initswitch.hook
 	install -m755 initswitch-hook-script $(DESTDIR)$(PREFIX)/share/libalpm/scripts/initswitch
+	install -m755 initswitch-remove-hook-script $(DESTDIR)$(PREFIX)/share/libalpm/scripts/initswitch-remove
 	install -d $(DESTDIR)$(PREFIX)/share/man/man8
 	install -m644 halt.8 $(DESTDIR)$(PREFIX)/share/man/man8/halt.8
 	ln -sf halt.8 $(DESTDIR)$(PREFIX)/share/man/man8/shutdown.8

@@ -1,0 +1,10 @@
+#!/bin/sh
+case $1 in
+	"openrc") [ "$(cat /proc/1/comm)" == "init" ] && initrunning=1 ;;
+	"runit") [ "$(cat /proc/1/comm)" == "runit" ] && initrunning=1 ;;
+esac
+
+if [ $initrunning = 1 ]; then
+	echo "	$1 is currently running as your init system. You cannot remove it."
+	exit 1
+fi
