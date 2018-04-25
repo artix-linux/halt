@@ -5,14 +5,10 @@ all:
 
 install:
 	install -d $(DESTDIR)$(PREFIX)/bin
-	install -d $(DESTDIR)$(PREFIX)/share/libalpm/hooks
-	install -d $(DESTDIR)$(PREFIX)/share/libalpm/scripts
 	install -m755 halt $(DESTDIR)$(PREFIX)/bin/halt
 	ln -sf halt $(DESTDIR)$(PREFIX)/bin/shutdown
 	ln -sf halt $(DESTDIR)$(PREFIX)/bin/poweroff
 	ln -sf halt $(DESTDIR)$(PREFIX)/bin/reboot
-	install -m644 initswitch-hook $(DESTDIR)$(PREFIX)/share/libalpm/hooks/initswitch.hook
-	install -m755 initswitch-hook-script $(DESTDIR)$(PREFIX)/share/libalpm/scripts/initswitch
 	install -d $(DESTDIR)$(PREFIX)/share/man/man8
 	install -m644 halt.8 $(DESTDIR)$(PREFIX)/share/man/man8/halt.8
 	ln -sf halt.8 $(DESTDIR)$(PREFIX)/share/man/man8/shutdown.8
