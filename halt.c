@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
                         execl("/usr/bin/runit-init", "init", "0", (char*)0);
                         break;
                     case OPENRC:
-                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--poweroff", openrc_options, (char*)0);
+                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--poweroff", openrc_options, "now", (char*)0);
                         break;
                 }
             err(1, "poweroff failed");
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
                         execl("/usr/bin/runit-init", "init", "6", (char*)0);
                         break;
                     case OPENRC:
-                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--reboot", openrc_options, (char*)0);
+                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--reboot", openrc_options, "now", (char*)0);
                         break;
                 }
             err(1, "reboot failed");
