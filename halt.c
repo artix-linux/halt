@@ -17,7 +17,7 @@
 
 extern char *__progname;
 
-typedef enum {NOOP, REBOOT, POWEROFF} action_type;
+typedef enum {NOOP, REBOOT, POWEROFF, WRITE_ONLY} action_type;
 typedef enum {OPENRC, RUNIT} initsys;
 
 const char* get_init()
@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
 
     int do_sync = 1;
     int do_force = 0;
+    int write_only = 0;
     int opt;
     action_type action = NOOP;
     initsys init;
@@ -72,8 +73,9 @@ int main(int argc, char *argv[])
         case 'w':
             if (init == RUNIT)
                 action = NOOP;
+            else
+                action = WRITE_ONLY;
             do_sync = 0;
-            strcat(openrc_options, "--write-only");
             break;
         case 'd':
             strcat(openrc_options, "--no-write");
@@ -101,7 +103,7 @@ int main(int argc, char *argv[])
                         execl("/usr/bin/runit-init", "init", "0", (char*)0);
                         break;
                     case OPENRC:
-                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--poweroff", openrc_options, "now", (char*)0);
+                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--poweroff", "now", openrc_options, (char*)0);
                         break;
                 }
             err(1, "poweroff failed");
@@ -115,11 +117,13 @@ int main(int argc, char *argv[])
                         execl("/usr/bin/runit-init", "init", "6", (char*)0);
                         break;
                     case OPENRC:
-                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--reboot", openrc_options, "now", (char*)0);
+                        execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--reboot", "now", openrc_options, (char*)0);
                         break;
                 }
             err(1, "reboot failed");
             break;
+        case WRITE_ONLY: /* only applicable for OpenRC */
+            execl("/usr/bin/openrc-shutdown", "openrc-shutdown", "--write-only", (char*)0);
         case NOOP:
             break;
     }
